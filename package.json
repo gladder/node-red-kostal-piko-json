@@ -1,14 +1,24 @@
 {
-    "name" : "@gladder/node-red-kostal-piko-json",
-    "version"      : "0.0.1",
-    "keywords": [ "node-red", "kostal", "piko" ],
-    "description"  : "A simple node to query kostal piko inverter data using DxS (new generation only)",
-    "node-red" : {
+    "name": "@gladder/node-red-kostal-piko-json",
+    "version": "0.0.2",
+    "keywords": [
+        "node-red",
+        "kostal",
+        "piko"
+    ],
+    "description": "A simple node to query kostal piko inverter data using DxS (new generation only)",
+    "node-red": {
         "nodes": {
             "kostal-piko-json": "kostal-piko-json.js"
         }
     },
     "dependencies": {
         "node-fetch": "^2.6.7"
-    }
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/gladder/node-red-kostal-piko-json.git"
+    },
+    "author": "Patrick Moldenhauer",
+    "license": "MIT"
 }
