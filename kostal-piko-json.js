@@ -163,7 +163,7 @@ module.exports = function(RED) {
                     return res.json()
                 })
                 .then((json) => {
-                    node.error(json);
+                    //node.error(json);
                     let result = {};
                     queryDxs.forEach((el) => {
                         let item = json.dxsEntries.find(item => {

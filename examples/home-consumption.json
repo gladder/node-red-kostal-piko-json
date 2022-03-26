@@ -1,0 +1,205 @@
+[
+    {
+        "id": "92c01d87.d4428",
+        "type": "tab",
+        "label": "Inverter",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "ccdb0b01.f04f38",
+        "type": "inject",
+        "z": "92c01d87.d4428",
+        "name": "Call Inverter Data",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "120",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 210,
+        "y": 240,
+        "wires": [
+            [
+                "75f9befa.0027a"
+            ]
+        ]
+    },
+    {
+        "id": "dc7436c3.51e908",
+        "type": "debug",
+        "z": "92c01d87.d4428",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 730,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "e22381c5.8ac4",
+        "type": "ui_text",
+        "z": "92c01d87.d4428",
+        "group": "f4ad1562.be4d18",
+        "order": 17,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Gesamtleistung",
+        "format": "{{msg.payload.AC_P_TOTAL | number: 1}} W",
+        "layout": "row-spread",
+        "x": 1140,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "cf471eff.52b58",
+        "type": "ui_text",
+        "z": "92c01d87.d4428",
+        "group": "f4ad1562.be4d18",
+        "order": 17,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Freie Leistung",
+        "format": "{{msg.payload.free2use | number: 1}} W",
+        "layout": "row-spread",
+        "x": 1140,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "321b3e75.f44e22",
+        "type": "function",
+        "z": "92c01d87.d4428",
+        "name": "Calc Free2Use",
+        "func": "let free2use = msg.payload.AC_P_TOTAL - msg.payload.HOME_CONSUMPTION_PV - msg.payload.HOME_CONSUMPTION_BATTERY;\nmsg.payload.free2use = free2use;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 960,
+        "y": 260,
+        "wires": [
+            [
+                "cf471eff.52b58"
+            ]
+        ]
+    },
+    {
+        "id": "74e01782.6fb158",
+        "type": "ui_gauge",
+        "z": "92c01d87.d4428",
+        "name": "Battery SoC",
+        "group": "f4ad1562.be4d18",
+        "order": 5,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Batterie SoC",
+        "label": "%",
+        "format": "{{msg.payload.BATTERY_SOC}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#c40808",
+            "#e6e600",
+            "#44c200"
+        ],
+        "seg1": "30",
+        "seg2": "70",
+        "x": 1130,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "75f9befa.0027a",
+        "type": "kostal-piko-json",
+        "z": "92c01d87.d4428",
+        "deviceip": "192.168.179.195",
+        "x": 490,
+        "y": 240,
+        "wires": [
+            [
+                "321b3e75.f44e22",
+                "74e01782.6fb158",
+                "e22381c5.8ac4",
+                "dc7436c3.51e908",
+                "9f8d08b.77b26f8",
+                "f6a294e6.52ee88",
+                "597d0b4c.f4e454"
+            ]
+        ]
+    },
+    {
+        "id": "9f8d08b.77b26f8",
+        "type": "ui_text",
+        "z": "92c01d87.d4428",
+        "group": "f4ad1562.be4d18",
+        "order": 17,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Home PV",
+        "format": "{{msg.payload.HOME_CONSUMPTION_PV | number: 1}} W",
+        "layout": "row-spread",
+        "x": 1120,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "f6a294e6.52ee88",
+        "type": "ui_text",
+        "z": "92c01d87.d4428",
+        "group": "f4ad1562.be4d18",
+        "order": 17,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Home BAT",
+        "format": "{{msg.payload.HOME_CONSUMPTION_BATTERY | number: 1}} W",
+        "layout": "row-spread",
+        "x": 1130,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "597d0b4c.f4e454",
+        "type": "ui_text",
+        "z": "92c01d87.d4428",
+        "group": "f4ad1562.be4d18",
+        "order": 17,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Home GRID",
+        "format": "{{msg.payload.HOME_CONSUMPTION_GRID | number: 1}} W",
+        "layout": "row-spread",
+        "x": 1130,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "f4ad1562.be4d18",
+        "type": "ui_group",
+        "z": "",
+        "name": "Temperaturen",
+        "tab": "ad47d06e.8a32",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "ad47d06e.8a32",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Sensorik",
+        "icon": "dashboard",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    }
+]
