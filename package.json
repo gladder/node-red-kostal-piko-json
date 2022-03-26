@@ -1,15 +1,16 @@
 {
     "name": "@gladder/node-red-kostal-piko-json",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "keywords": [
         "node-red",
         "kostal",
         "piko"
     ],
-    "description": "A simple node to query kostal piko inverter data using DxS (new generation only)",
+    "description": "A simple node to query kostal piko inverter data using DxS (new generation only).",
     "node-red": {
         "nodes": {
-            "kostal-piko-json": "kostal-piko-json.js"
+            "kostal-piko-json": "kostal-piko-json/kostal-piko-json.js",
+            "kostal-can-i-use": "kostal-can-i-use/kostal-can-i-use.js"
         },
         "version": ">=1.0.0"
     },

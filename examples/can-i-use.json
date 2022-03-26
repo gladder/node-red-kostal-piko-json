@@ -1,0 +1,78 @@
+[
+    {
+        "id": "f6f2187d.f17ca8",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "1067557b39c2a3c3",
+        "type": "inject",
+        "z": "f6f2187d.f17ca8",
+        "name": "Trigger Inverter Query",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 260,
+        "y": 340,
+        "wires": [
+            [
+                "ca7b15cae0925c92"
+            ]
+        ]
+    },
+    {
+        "id": "1704d5e4136a9fb9",
+        "type": "debug",
+        "z": "f6f2187d.f17ca8",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 950,
+        "y": 200,
+        "wires": []
+    },
+    {
+        "id": "ca7b15cae0925c92",
+        "type": "kostal-piko-json",
+        "z": "f6f2187d.f17ca8",
+        "deviceip": "192.168.179.195",
+        "x": 530,
+        "y": 340,
+        "wires": [
+            [
+                "1704d5e4136a9fb9",
+                "8de4e535eb43e463"
+            ]
+        ]
+    },
+    {
+        "id": "8de4e535eb43e463",
+        "type": "kostal-can-i-use",
+        "z": "f6f2187d.f17ca8",
+        "devicename": "Waschmaschine",
+        "devicepower": "2000",
+        "x": 910,
+        "y": 340,
+        "wires": [
+            [
+                "1704d5e4136a9fb9"
+            ]
+        ]
+    }
+]
