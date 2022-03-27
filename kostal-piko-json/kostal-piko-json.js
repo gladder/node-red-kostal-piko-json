@@ -177,7 +177,7 @@ module.exports = function(RED) {
                         }
                     });
                     node.send({ payload: result });
-                    node.status({fill:"green",shape:"dot",text:result[INVERTER_OPERATING_STATUS.dxs]});
+                    node.status({fill:"green",shape:"dot",text:result[INVERTER_OPERATING_STATUS.label]});
                 }).catch(err => node.status({fill:"red",shape:"dot",text:"communication failed :("}));
         });
     }
