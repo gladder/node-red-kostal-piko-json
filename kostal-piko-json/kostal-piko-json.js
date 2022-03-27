@@ -154,11 +154,12 @@ module.exports = function(RED) {
 
             const url = "http://{IP}/api/dxs.json?".replace("{IP}", config.deviceip) + (queryDxs.map(x => "dxsEntries="+x.dxs).join("&"));
                         
-            let settings = { method: "Get" };
+            let settings = { method: "Get", timeout: config.timeout };
             fetch(url, settings)
                 .then((res) => {
                     if (!res.ok) {
                         node.error("Request to inverter " + config.deviceip + " failed!");
+                        node.status({fill:"red",shape:"dot",text:"communication failed :("});
                     }
                     return res.json()
                 })
@@ -176,7 +177,8 @@ module.exports = function(RED) {
                         }
                     });
                     node.send({ payload: result });
-                })
+                    node.status({fill:"green",shape:"dot",text:result[INVERTER_OPERATING_STATUS.dxs]});
+                }).catch(err => node.status({fill:"red",shape:"dot",text:"communication failed :("}));
         });
     }
     RED.nodes.registerType("kostal-piko-json",KostalPikoJsonNode);

@@ -3,7 +3,12 @@
         category: 'function',
         color: '#b0ca33',
         defaults: {
-            deviceip: {value:"", required: true}
+            deviceip: {value:"", required: true},
+            timeout: {
+                value:15000, 
+                required: true,
+                validate:RED.validators.number()
+            }
         },
         inputs:1,
         outputs:1,
@@ -18,6 +23,11 @@
     <div class="form-row">
         <label for="node-input-deviceip"><i class="fa fa-tag"></i> inverter ip</label>
         <input type="text" id="node-input-deviceip" placeholder="127.0.0.1">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-timeout"><i class="fa fa-timer"></i> communication timeout (ms)</label>
+        <input type="text" id="node-input-timeout" placeholder="15000">
     </div>
 </script>
 

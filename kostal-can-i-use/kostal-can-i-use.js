@@ -6,6 +6,7 @@ module.exports = function(RED) {
             let available = 0;
             let result = {
                 devicename: config.devicename,
+                devicepower: config.devicepower,
                 runable: false
             }
             if(!isNaN(msg.payload)){
