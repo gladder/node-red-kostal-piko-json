@@ -153,6 +153,10 @@ module.exports = function(RED) {
 
 
             const url = "http://{IP}/api/dxs.json?".replace("{IP}", config.deviceip) + (queryDxs.map(x => "dxsEntries="+x.dxs).join("&"));
+
+            if (config.debug) {
+                node.send({ payload: url });
+            }
                         
             let settings = { method: "Get", timeout: config.timeout };
             fetch(url, settings)
