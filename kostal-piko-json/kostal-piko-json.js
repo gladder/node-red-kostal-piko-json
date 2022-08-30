@@ -139,7 +139,7 @@ module.exports = function(RED) {
             ];
 
             if (config.queryhome == true) {
-                queryDxs.concat([
+                queryDxs = queryDxs.concat([
                     HOME_CONSUMPTION_PV, 
                     HOME_CONSUMPTION_BATTERY, 
                     HOME_CONSUMPTION_GRID, 
