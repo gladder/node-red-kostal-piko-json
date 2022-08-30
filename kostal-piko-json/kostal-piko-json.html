@@ -10,6 +10,7 @@
                 validate:RED.validators.number()
             },
             debug: {value:false, required: false},
+            queryhome: {value:true, required: false},
         },
         inputs:1,
         outputs:1,
@@ -32,7 +33,12 @@
     </div>
 
     <div class="form-row">
-        <label for="node-input-timeout"><i class="fa fa-bug"></i> debug output</label>
+        <label for="node-input-queryhome"><i class="fa fa-home"></i> query home consumption (needs sensor!)</label>
+        <input type="checkbox" id="node-input-queryhome">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-debug"><i class="fa fa-bug"></i> debug output</label>
         <input type="checkbox" id="node-input-debug">
     </div>
 </script>

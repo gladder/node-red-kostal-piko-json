@@ -124,16 +124,7 @@ module.exports = function(RED) {
                 INVERTER_SERIALNUMBER,
                 YIELD_TOTAL, 
                 FEED_IN_STATUS, 
-                HOME_CONSUMPTION_PV, 
-                HOME_CONSUMPTION_BATTERY, 
-                HOME_CONSUMPTION_GRID, 
-                HOME_CONSUMPTION_TOTAL, 
-                HOME_CONSUMPTION_DAY,
                 FEED_IN_TIME,
-                AUTONOMY_DEGREE_DAY,
-                OWN_CONSUMPTION_RATE_TOTAL,
-                AUTONOMY_DEGREE_TOTAL,
-                HOME_TOTAL_POWER,
                 BATTERY_SOC,
                 BATTERY_ABSOLUTE_CURRENT,
                 BATTERY_CURRENTDIRECTION,
@@ -141,15 +132,29 @@ module.exports = function(RED) {
                 YIELD_TOTAL,
                 AC_P_TOTAL,
                 COSINUS_PHI,
-                OWN_CONSUMPTION_TOTAL,
-                OWN_CONSUMPTION_DAY,
-                OWN_CONSUMPTION_RATE_DAY,
                 INVERTER_OPERATING_STATUS,
-                HOME_OWN_CONSUMPTION_TOTAL,
                 GRID_FREQUENZY,
                 DC_I,
                 DC_P
             ];
+
+            if (config.queryhome) {
+                queryDxs.concat([
+                    HOME_CONSUMPTION_PV, 
+                    HOME_CONSUMPTION_BATTERY, 
+                    HOME_CONSUMPTION_GRID, 
+                    HOME_CONSUMPTION_TOTAL, 
+                    HOME_CONSUMPTION_DAY,
+                    AUTONOMY_DEGREE_DAY,
+                    OWN_CONSUMPTION_RATE_TOTAL,
+                    AUTONOMY_DEGREE_TOTAL,
+                    HOME_TOTAL_POWER,
+                    OWN_CONSUMPTION_TOTAL,
+                    OWN_CONSUMPTION_DAY,
+                    OWN_CONSUMPTION_RATE_DAY,
+                    HOME_OWN_CONSUMPTION_TOTAL,
+                ]);
+            }
 
 
             const url = "http://{IP}/api/dxs.json?".replace("{IP}", config.deviceip) + (queryDxs.map(x => "dxsEntries="+x.dxs).join("&"));
