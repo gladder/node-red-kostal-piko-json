@@ -119,7 +119,7 @@ module.exports = function(RED) {
         var node = this;
         node.on('input', function(msg) {
             
-            const queryDxs = [
+            var queryDxs = [
                 INVERTER_NAME, 
                 INVERTER_SERIALNUMBER,
                 YIELD_TOTAL, 
@@ -138,7 +138,7 @@ module.exports = function(RED) {
                 DC_P
             ];
 
-            if (config.queryhome) {
+            if (config.queryhome == true) {
                 queryDxs.concat([
                     HOME_CONSUMPTION_PV, 
                     HOME_CONSUMPTION_BATTERY, 
@@ -159,7 +159,7 @@ module.exports = function(RED) {
 
             const url = "http://{IP}/api/dxs.json?".replace("{IP}", config.deviceip) + (queryDxs.map(x => "dxsEntries="+x.dxs).join("&"));
 
-            if (config.debug) {
+            if (config.debug == true) {
                 node.send({ payload: url });
             }
                         
