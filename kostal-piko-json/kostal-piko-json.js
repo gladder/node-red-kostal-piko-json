@@ -156,6 +156,34 @@ module.exports = function(RED) {
                 ]);
             }
 
+            if (config.querydcstrings == true) {
+                queryDxs = queryDxs.concat([
+                    DC_I_STRING_1, 
+                    DC_I_STRING_2, 
+                    DC_I_STRING_3, 
+                    DC_U_STRING_1, 
+                    DC_U_STRING_2,
+                    DC_U_STRING_3,
+                    DC_P_STRING_1,
+                    DC_P_STRING_2,
+                    DC_P_STRING_3,
+                ]);
+            }
+
+            if (config.queryacphases == true) {
+                queryDxs = queryDxs.concat([
+                    AC_L1_I, 
+                    AC_L2_I, 
+                    AC_L3_I, 
+                    AC_L1_U,
+                    AC_L2_U,
+                    AC_L3_U,
+                    AC_L1_P,
+                    AC_L2_P,
+                    AC_L3_P,
+                ]);
+            }
+
 
             const url = "http://{IP}/api/dxs.json?".replace("{IP}", config.deviceip) + (queryDxs.map(x => "dxsEntries="+x.dxs).join("&"));
 
